@@ -16,9 +16,9 @@ setTimeout(function() {
   }, 200);
 }, 2000);
 
-fireworks.push(new Firework(width / 2, height, 0, -9.5, 10, "gold", true));
+fireworks.push(new Firework(width / 2, height-1000, 0, -9.5, 10, "gold", true));
 setInterval(function() {
-  fireworks.push(new Firework(width / 2, height, 0, -9.5, 10, "gold", true));
+  fireworks.push(new Firework(width / 2, height-1000, 0, -9.5, 10, "gold", true));
 }, 5000);
 
 for (var i = 0; i < 250; i++) {
