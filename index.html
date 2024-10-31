@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>笺宝生日快乐！</title>
+    <style>
+        /* 确保画布充满全屏 */
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* 隐藏滚动条 */
+        }
+        canvas {
+            display: block; /* 使画布为块级元素 */
+        }
+    </style>
+</head>
+
+<body>
+<canvas id="gameCanvas"></canvas> <!-- 添加画布元素 -->
+<script src='js/gameCanvas-4.0.js'></script>
+<script src="js/script.js"></script>
+
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const gc = canvas.getContext('2d');
+
+    // 设置画布宽度和高度
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    // 根据设备类型设置烟花的高度
+    function getFireworkHeight() {
+        // 如果屏幕宽度小于768px，认为是手机
+        if (window.innerWidth < 768) {
+            return window.innerHeight * 0.8; // 手机时，烟花高度为80%
+        } else {
+            return window.innerHeight * 0.1; // 电脑时，烟花高度为90%
+        }
+    }
+
+    // 初始化画布
+    resizeCanvas();
+
+    // 设置烟花
+    fireworks.push(new Firework(width / 2, getFireworkHeight(), 0, -9.5, 10, "gold", true));
+
+    // 每5000毫秒（5秒）生成一个新的金色烟花
+    setInterval(function() {
+        fireworks.push(new Firework(width / 2, getFireworkHeight(), 0, -9.5, 10, "gold", true));
+    }, 5000);
+
+    // 动画循环
+    function loop() {
+        gc.clearRect(0, 0, canvas.width, canvas.height); // 清除画布
+        // 其他渲染代码...
+        requestAnimationFrame(loop);
+    }
+
+    // 窗口大小变化时调整画布和烟花高度
+    window.addEventListener('resize', function() {
+        resizeCanvas();
+        // 更新烟花高度
+        fireworks.forEach(firework => {
+            firework.y = getFireworkHeight(); // 更新烟花的y坐标
+        });
+    });
+
+    loop(); // 启动动画循环
+</script>
+</body>
+</html>
