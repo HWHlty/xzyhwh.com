@@ -1,7 +1,7 @@
 
 var gc = new GameCanvas();
 
-var points = textToPoints(" 笺宝生日快乐！", 15, "Anton");
+var points = textToPoints(" 赵天一你是我滴神！", 15, "Anton");
 
 
 var titleParticles = [];
